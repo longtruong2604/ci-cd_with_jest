@@ -9,7 +9,7 @@ it("App Router: Works with Server Components", () => {
   expect(screen.getByRole("heading")).toHaveTextContent("App Router");
 });
 
-it("App Router: Truong Thanh Long text should be in the document", () => {
+it("App Router: Truong Thanh Hung text should be in the document", () => {
   render(<Page />);
-  expect(screen.getByText("Truong Thanh Long")).toBeInTheDocument()
+  expect(screen.getByText("Truong Thanh Hung")).toBeInTheDocument()
 });
