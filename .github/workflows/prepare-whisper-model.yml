@@ -1,0 +1,31 @@
+name: Prepare Whisper Model
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prepare-model:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Download multilingual Whisper model
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p bundle
+          curl -L --fail --retry 5 --retry-delay 3 \
+            -o bundle/ggml-tiny-q5_1.bin \
+            https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-tiny-q5_1.bin
+          sha256sum bundle/ggml-tiny-q5_1.bin > bundle/SHA256SUMS
+
+      - name: Upload model
+        uses: actions/upload-artifact@v4
+        with:
+          name: whisper-multilingual-model
+          path: bundle/
+          retention-days: 1
+          compression-level: 0
