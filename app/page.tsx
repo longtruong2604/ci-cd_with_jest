@@ -5,6 +5,6 @@ export const metadata = {
 export default function Page() {
   return <div>
     <h1>App Router</h1>
-    <p>Truong Thanh Long</p>
+    <p>Truong Thanh Hung</p>
   </div>;
 }
